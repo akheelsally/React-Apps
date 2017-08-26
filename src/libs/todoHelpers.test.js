@@ -2,7 +2,8 @@ import {
   addTodo,
   updateTodoList,
   findById,
-  deleteTask
+  deleteTask,
+  partialApply
 } from './todoHelpers'
 
 test('should add a todo to the list', () => {
@@ -73,4 +74,13 @@ test('deleteTask should delete task without  mutate original list', () => {
   const results = deleteTask(456, startingTodoList);
 
   expect(results).toEqual(expected)
+})
+
+
+const add = (a, b) => a + b
+
+test('partially apply the first argument ahead of time', () => {
+  const inc = partialApply(add, 1)
+  const result = inc(2)
+  expect(result).toBe(3)
 })

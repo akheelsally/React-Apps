@@ -4,21 +4,17 @@ import TodoItem from './todo-item'
 
 class TodoItemContainer extends Component {
 
-  constructor (props) {
-    super(props)
-    this.state = {
+    state = {
       filter: ''
     }
-    this.setFilter = this.setFilter.bind(this)
-  }
 
-  getFilterStatus (bool) {
+  getFilterStatus = (bool) => {
     var word = bool ? 'completed' : 'complete'
     var word2 = bool ? 'Active' : 'add'
     return this.state.filter === 'Completed'? word : word2
   }
 
-  rendertaskItems (arr) {
+  rendertaskItems = (arr) => {
     arr = this.filterData(arr)
     if (arr.length === 0 ) {
       return (
@@ -39,17 +35,17 @@ class TodoItemContainer extends Component {
           deleteTask={this.props.deleteTask}
           updateTask={this.props.updateTask}
           checked={task.completed}
-          {...task} />
+          task={task} />
       )
     })
   }
 
-  setFilter (newFilter) {
+  setFilter = (newFilter) => {
     console.log(this.state.filter + 'setting filter to ' + newFilter)
     this.setState({filter: newFilter})
   }
 
-  filterData (tasks) {
+  filterData = (tasks) => {
     const filter = this.state.filter
     console.log('filtering data ' + filter)
     switch (filter) {

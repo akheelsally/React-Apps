@@ -24,3 +24,5 @@ export const deleteTask = (id, list) => {
     ...list.slice(index + 1)
   ]
 }
+
+export const partialApply = (func, ...args) => func.bind(null, ...args)

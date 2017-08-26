@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 
 const Edit = (props) => {
-  console.log('props are')
-  console.log(props)
   var titleUpdateInput;
   const exit = () => {
     props.history.push('/');
@@ -28,7 +26,7 @@ const Edit = (props) => {
       <div className='modal'>
         <span
           className='close' 
-          onClick={() => exit()}>&times;</span>
+          onClick={exit}>&times;</span>
         <div className='model-content'>
           <label className='modal-label' htmlFor='task-edit-input'>Title</label>
           <input
@@ -37,11 +35,11 @@ const Edit = (props) => {
             type='text'
             defaultValue={props.task.title} 
             ref={el => { titleUpdateInput = el }}
-            onKeyUp={(e) => handleKeyPress(e)}
+            onKeyUp={handleKeyPress}
           />
           <div className="btn-group">
-            <span className='btn-modal' onClick={() => update()} >Confirm</span>
-            <span className='btn-modal' onClick={() => exit()}>Cancel</span>
+            <span className='btn-modal' onClick={update} >Confirm</span>
+            <span className='btn-modal' onClick={exit}>Cancel</span>
           </div>
         </div>
       </div>

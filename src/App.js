@@ -24,7 +24,7 @@ class App extends Component {
 
   deleteTask = (id) => {
     var tasks = this.state.tasks
-    this.setState({tasks: deleteTask(id, tasks))
+    this.setState({tasks: deleteTask(id, tasks)})
   }
 
   addTask = (newTask) => {
