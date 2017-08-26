@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import ToggleBtn from './toggle-btn'
 import TodoItem from './todo-item'
 
-class TodoItemContainer extends Component {
 
+class TodoItemContainer extends Component {
     state = {
       filter: ''
     }
@@ -18,10 +18,14 @@ class TodoItemContainer extends Component {
     arr = this.filterData(arr)
     if (arr.length === 0 ) {
       return (
-        <div className='error'>
-          <div className='error-content'>
-            <h3 className='error-heading'>No {this.getFilterStatus(true)} Tasks Remaining</h3>
-            <p className='error-description'>Please {this.getFilterStatus()} more tasks </p>
+        <div className='notification'>
+          <div className='notification-content'>
+            <h3 className='notification-heading'>
+               No {this.getFilterStatus(true)} Tasks Remaining
+            </h3>
+            <p className='notification-description'>
+               Please {this.getFilterStatus()} more tasks
+            </p>
           </div>     
         </div>
         
@@ -31,23 +35,19 @@ class TodoItemContainer extends Component {
       return (
         <TodoItem
           key={task.id}
-          id={task.id}
           deleteTask={this.props.deleteTask}
           updateTask={this.props.updateTask}
-          checked={task.completed}
           task={task} />
       )
     })
   }
 
   setFilter = (newFilter) => {
-    console.log(this.state.filter + 'setting filter to ' + newFilter)
     this.setState({filter: newFilter})
   }
 
   filterData = (tasks) => {
     const filter = this.state.filter
-    console.log('filtering data ' + filter)
     switch (filter) {
       case 'Completed':
         return tasks.filter(task => task.completed === true)
@@ -69,5 +69,7 @@ class TodoItemContainer extends Component {
     )
   }
 }
+
+
 
 export default TodoItemContainer

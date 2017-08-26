@@ -249,21 +249,21 @@ a {
 }// end of fsy
 
 
-.error {
+.notification {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background: $todoLisItemBackgroundColor;
   padding: 3em 1em;
-   .error-content {
-     .error-heading {
+   .notification-content {
+     .notification-heading {
         font-weight: 500;
         text-align: center;
         margin:1em auto .5em;
         color:darken($todoLisItemBackgroundColor, 80%);
       }
-      .error-description {
+      .notification-description {
         margin:0;
         text-align: center;
         color:darken($todoLisItemBackgroundColor, 30%);

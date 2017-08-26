@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const TodoInput = (props) => {
   var taskInput;
@@ -7,7 +8,6 @@ const TodoInput = (props) => {
       props.addTask(taskInput.value)
       taskInput.value = ''
     }
-    
   }
   return (
     <div className='todo-input-section'>
@@ -23,4 +23,8 @@ const TodoInput = (props) => {
   )
 }
 
+TodoInput.propTypes = {
+  addTask: PropTypes.func.isRequired
+
+}
 export default TodoInput

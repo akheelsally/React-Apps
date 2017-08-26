@@ -1,32 +1,40 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { partialApply } from '../libs/todoHelpers'
 
 class ToggleBtn extends Component {
-  constructor (props) {
-    super(props) 
-    this.state = {
+
+    state = {
       active: null,
     }
-  }
+  
 
- updateFilter (filter, func, index) {    
+ updateFilter = (filter, func, index) => {    
     func(filter);
     this.setState({active: index})
  }
 
   render () {
     return (
-      <div className="todo-item-filter">
+      <div className='todo-item-filter'>
         {this.props.labels.map((label, index) => {
           return ( 
             <span 
               key={index} 
               className={this.state.active === index ? 'filter-btn active' : 'filter-btn'}
-              onClick={() => this.updateFilter(label, this.props.func, index)}>{label}</span>
+              onClick={partialApply(this.updateFilter, label, this.props.func, index)}>
+              {label}
+            </span>
           )
         })}      
       </div>
     )
   }
+}
+
+ToggleBtn.propTypes = {
+  func:PropTypes.func.isRequired,
+  labels:PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
 export default ToggleBtn
