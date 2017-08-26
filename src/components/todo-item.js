@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {
   Link
 } from 'react-router-dom'
-import { partialApply } from './todoHelpers'
+import { partialApply } from '../libs/todoHelpers'
 
 const TodoItem = (props) => {
   var checkboxInput;
