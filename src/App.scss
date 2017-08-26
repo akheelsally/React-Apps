@@ -18,7 +18,11 @@ body {
 }
 
 body {
+  font-size: 90%;
   font-family: 'Roboto', serif;
+  @media screen and (min-width:400px) {
+    font-size: 100%;
+  }
 }
 
 a {
@@ -62,8 +66,7 @@ a {
     color:#E8EBF5;
     outline: none;
     border: none;
-    width:85%;
-    min-width:220px;
+    width:100%;
     height:100%;
     padding:.5em 1em;
     border-top-left-radius:  5px;
@@ -115,6 +118,8 @@ a {
       border-top:none;
       &:last-of-type{
         box-shadow: 0 1px 3px #C4CBE2;
+        border-bottom-left-radius: .75em;
+        border-bottom-right-radius: .75em;
       }
       .checkbox {
         margin: 0 1em 0 0;
@@ -169,17 +174,18 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.4);  
   .modal {
     position: fixed;
     background: $modalBackgroundColor;
     padding:3em 1em 1em;
     top: 50%;
     left: 50%;
-    min-width: 250px;
+    width: 90%;
+    max-width: 400px;
     transform: translate(-50%,-50%);
     box-shadow: 2px 2px 15px rgba(0,0,0,0.6);
-    border-radius: .5em;    
+    border-radius: .5em;   
     .close {
       position: absolute;
       top:.5em;
@@ -188,30 +194,52 @@ a {
     .model-content {
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
+      max-height: 80vh;
+      overflow-y: auto; 
+      padding-right:1em; 
       .modal-label {
+        position: relative;
         color: #094CA2;
         font-size: .925em;
+        font-weight: 500;
+        &:nth-of-type(n+2) {
+          margin:1.5em 0 .5em;
+          
+        }
+        .subtask-add-btn {
+          position: absolute;
+          top:50%;
+          padding:.25em .5em;
+          font-weight: 900;
+          font-size: 1.5em;
+          transform: translateY(-50%)
+        }
+        
        }
       .modal-input {
         font-size: 1.5em;
         font-weight: 500;
         height: 40px;
         width: 100%;
-        padding:.5em 0 .3em 0;
+        padding:.5em 0;
         background: inherit;
         border:#fff;
         outline: none;
         border-bottom: 1.5px solid #888;
+        margin-bottom: .5em;
         &:focus {
           border-bottom: 1.5px solid #094CA2; 
         }         
       }// end of modal-input
+
       .btn-group {
         display: flex;
         justify-content: space-around;
         align-items: center;
         padding:1em 0 .5em 0;
         align-self: flex-end;
+        margin:1em 0;
         .btn-modal {
           display:inline-block;
           text-align:center;
@@ -247,6 +275,53 @@ a {
     }//end of model content
   }//end of model
 }// end of fsy
+.subtask-list-container {
+  width: 100%;
+  .subtask-list {
+    list-style: none;
+    padding: 0;
+    background: #fff;
+    margin: 0;
+    .subtask-list-item {
+      position: relative;
+      padding: 1em 0 .5em 1em;
+      border: 1px solid #949FC4; 
+      &:first-of-type {
+        border-top-left-radius: .5em;
+        border-top-right-radius: .5em;
+      }
+      &:nth-of-type(n+2) {
+        border-top: none;
+      }
+      &:last-of-type {
+        border-bottom-left-radius: .5em;
+        border-bottom-right-radius: .5em;
+      }
+      .edit {
+        position: absolute;
+        font-size: 1.5em;
+        top: calc(50% - .75em);
+        right: 1.75em;
+        color: #999;
+        display: none;
+      }
+      .delete {
+        position: absolute;
+        font-size: 2em;
+        top: calc(50% - .75em);
+        right: .5em;
+        color:crimson;
+        display: none;
+ 
+      }
+      &:hover  .delete,
+      &:hover .edit {
+        display: block;
+      }
+    }
+  }
+
+}
 
 
 .notification {
@@ -256,6 +331,8 @@ a {
   flex-direction: column;
   background: $todoLisItemBackgroundColor;
   padding: 3em 1em;
+  border-bottom-left-radius: .75em;
+  border-bottom-right-radius: .75em;
    .notification-content {
      .notification-heading {
         font-weight: 500;

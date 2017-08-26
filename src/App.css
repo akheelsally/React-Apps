@@ -10,7 +10,11 @@ body {
   margin: 0; }
 
 body {
+  font-size: 90%;
   font-family: 'Roboto', serif; }
+  @media screen and (min-width: 400px) {
+    body {
+      font-size: 100%; } }
 
 a {
   text-decoration: none;
@@ -49,8 +53,7 @@ a {
     color: #E8EBF5;
     outline: none;
     border: none;
-    width: 85%;
-    min-width: 220px;
+    width: 100%;
     height: 100%;
     padding: .5em 1em;
     border-top-left-radius: 5px;
@@ -93,7 +96,9 @@ a {
       border: 1px solid #C4CBE2;
       border-top: none; }
       .todo-item-container .todo-item-list .todo-item:last-of-type {
-        box-shadow: 0 1px 3px #C4CBE2; }
+        box-shadow: 0 1px 3px #C4CBE2;
+        border-bottom-left-radius: .75em;
+        border-bottom-right-radius: .75em; }
       .todo-item-container .todo-item-list .todo-item .checkbox {
         margin: 0 1em 0 0;
         background: red; }
@@ -142,7 +147,8 @@ a {
     padding: 3em 1em 1em;
     top: 50%;
     left: 50%;
-    min-width: 250px;
+    width: 90%;
+    max-width: 400px;
     transform: translate(-50%, -50%);
     box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.6);
     border-radius: .5em; }
@@ -152,20 +158,36 @@ a {
       right: .5em; }
     .fs .modal .model-content {
       display: flex;
-      flex-direction: column; }
+      flex-direction: column;
+      justify-content: space-between;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding-right: 1em; }
       .fs .modal .model-content .modal-label {
+        position: relative;
         color: #094CA2;
-        font-size: .925em; }
+        font-size: .925em;
+        font-weight: 500; }
+        .fs .modal .model-content .modal-label:nth-of-type(n+2) {
+          margin: 1.5em 0 .5em; }
+        .fs .modal .model-content .modal-label .subtask-add-btn {
+          position: absolute;
+          top: 50%;
+          padding: .25em .5em;
+          font-weight: 900;
+          font-size: 1.5em;
+          transform: translateY(-50%); }
       .fs .modal .model-content .modal-input {
         font-size: 1.5em;
         font-weight: 500;
         height: 40px;
         width: 100%;
-        padding: .5em 0 .3em 0;
+        padding: .5em 0;
         background: inherit;
         border: #fff;
         outline: none;
-        border-bottom: 1.5px solid #888; }
+        border-bottom: 1.5px solid #888;
+        margin-bottom: .5em; }
         .fs .modal .model-content .modal-input:focus {
           border-bottom: 1.5px solid #094CA2; }
       .fs .modal .model-content .btn-group {
@@ -173,7 +195,8 @@ a {
         justify-content: space-around;
         align-items: center;
         padding: 1em 0 .5em 0;
-        align-self: flex-end; }
+        align-self: flex-end;
+        margin: 1em 0; }
         .fs .modal .model-content .btn-group .btn-modal {
           display: inline-block;
           text-align: center;
@@ -200,13 +223,52 @@ a {
           .fs .modal .model-content .btn-group .cancel:hover {
             background: linear-gradient(to bottom, #C31B12 0%, #A00901 20%, #A00901 80%, #C31B12 100%); }
 
+.subtask-list-container {
+  width: 100%; }
+  .subtask-list-container .subtask-list {
+    list-style: none;
+    padding: 0;
+    background: #fff;
+    margin: 0; }
+    .subtask-list-container .subtask-list .subtask-list-item {
+      position: relative;
+      padding: 1em 0 .5em 1em;
+      border: 1px solid #949FC4; }
+      .subtask-list-container .subtask-list .subtask-list-item:first-of-type {
+        border-top-left-radius: .5em;
+        border-top-right-radius: .5em; }
+      .subtask-list-container .subtask-list .subtask-list-item:nth-of-type(n+2) {
+        border-top: none; }
+      .subtask-list-container .subtask-list .subtask-list-item:last-of-type {
+        border-bottom-left-radius: .5em;
+        border-bottom-right-radius: .5em; }
+      .subtask-list-container .subtask-list .subtask-list-item .edit {
+        position: absolute;
+        font-size: 1.5em;
+        top: calc(50% - .75em);
+        right: 1.75em;
+        color: #999;
+        display: none; }
+      .subtask-list-container .subtask-list .subtask-list-item .delete {
+        position: absolute;
+        font-size: 2em;
+        top: calc(50% - .75em);
+        right: .5em;
+        color: crimson;
+        display: none; }
+      .subtask-list-container .subtask-list .subtask-list-item:hover .delete,
+      .subtask-list-container .subtask-list .subtask-list-item:hover .edit {
+        display: block; }
+
 .notification {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background: #E8EBF5;
-  padding: 3em 1em; }
+  padding: 3em 1em;
+  border-bottom-left-radius: .75em;
+  border-bottom-right-radius: .75em; }
   .notification .notification-content .notification-heading {
     font-weight: 500;
     text-align: center;

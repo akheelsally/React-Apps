@@ -11,7 +11,7 @@ const TodoItem = (props) => {
   }
   const deleteTask = partialApply(props.deleteTask, props.task.id)  
   return (
-    <li className='todo-item'>
+    <li className={props.itemClass}>
       <input
         type='checkbox'
         className='checkbox'

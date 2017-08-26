@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Edit from './components/edit'
+import DetailedView from './components/edit'
 import TodoInput from './components/todo-input'
 import TodoItemContainer from './components/todo-item-container'
 import './App.css'
@@ -19,7 +19,19 @@ import {
 class App extends Component {
 
     state = {
-      tasks: [{title: 'test', id: 123, completed: false}]
+      tasks: [{title: 'test', id: 123, completed: false, dueDate: new  Date('2017/04/08'),
+                subtasks:[
+                  {title: 'test', id: 123, completed: false},
+                  {id: 123, title: 'write test', completed: false},
+                  {id: 456, title: 'write more test', completed: false},
+                  {id: 789, title: 'this is the new todo', completed: false},
+                  {id: 458, title: 'write test', completed: false},
+                  {id: 799, title: 'write more test', completed: false},
+                  {id: 777, title: 'this is the new todo', completed: false},
+                  {id: 555, title: 'write test', completed: false} 
+                ]
+              }
+            ]
     }
 
   deleteTask = (id) => {
@@ -56,12 +68,16 @@ class App extends Component {
           <TodoItemContainer
             tasks={this.state.tasks}
             deleteTask={this.deleteTask}
-            updateTask={this.updateTask}  
+            updateTask={this.updateTask}
+            isFilter={true}
+            listClass={'todo-item-list'}
+            containerClass={'todo-item-container' }  
+            itemClass={'todo-item'}
           />
           <Route 
             path='/:task/edit' 
             render={(props) => 
-              <Edit 
+              <DetailedView 
                 updateTask={this.updateTask}
                 task={this.findTask(props.match.params.task)}
                 {...props}

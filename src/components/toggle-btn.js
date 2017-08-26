@@ -4,10 +4,9 @@ import { partialApply } from '../libs/todoHelpers'
 
 class ToggleBtn extends Component {
 
-    state = {
+  state = {
       active: null,
-    }
-  
+  }  
 
  updateFilter = (filter, func, index) => {    
     func(filter);

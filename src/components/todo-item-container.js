@@ -14,14 +14,14 @@ class TodoItemContainer extends Component {
     return this.state.filter === 'Completed'? word : word2
   }
 
-  rendertaskItems = (arr) => {
+  rendertaskItems = (arr,itemClass) => {
     arr = this.filterData(arr)
-    if (arr.length === 0 ) {
+    if (!arr || arr.length === 0 ) {
       return (
         <div className='notification'>
           <div className='notification-content'>
             <h3 className='notification-heading'>
-               No {this.getFilterStatus(true)} Tasks Remaining
+               No {this.getFilterStatus(true)} Tasks available
             </h3>
             <p className='notification-description'>
                Please {this.getFilterStatus()} more tasks
@@ -37,7 +37,8 @@ class TodoItemContainer extends Component {
           key={task.id}
           deleteTask={this.props.deleteTask}
           updateTask={this.props.updateTask}
-          task={task} />
+          task={task}
+          itemClass={itemClass} />
       )
     })
   }
@@ -60,10 +61,10 @@ class TodoItemContainer extends Component {
 
   render () {
     return (
-      <div className='todo-item-container'>
-        <ToggleBtn labels={['ALL', 'Completed', 'Active']} func={this.setFilter} />
-        <ul className='todo-item-list'>
-          {this.rendertaskItems(this.props.tasks)}
+      <div className={this.props.containerClass}>
+       {this.props.isFilter && <ToggleBtn labels={['ALL', 'Completed', 'Active']} func={this.setFilter} />} 
+        <ul className={this.props.listClass}>
+          {this.rendertaskItems(this.props.tasks, this.props.itemClass)}
         </ul>
       </div>
     )
