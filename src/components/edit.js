@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 
 const Edit = (props) => {
-  var updateTaskInput;
+  console.log('props are')
+  console.log(props)
+  var titleUpdateInput;
   const exit = () => {
     props.history.push('/');
   }
 
   const update = () => {
-    var id = props.match.params.task
-    var value = updateTaskInput.value.trim();
-    props.updateTask(id, 'title', value)
+    var title = titleUpdateInput.value.trim();
+    if (!title) { return }
+    props.updateTask({...props.task, title})
     exit()
 
   }
@@ -34,7 +36,7 @@ const Edit = (props) => {
             className='modal-input'
             type='text'
             defaultValue={props.task.title} 
-            ref={el => { updateTaskInput = el }}
+            ref={el => { titleUpdateInput = el }}
             onKeyUp={(e) => handleKeyPress(e)}
           />
           <div className="btn-group">

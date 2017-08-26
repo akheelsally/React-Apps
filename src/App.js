@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import Edit from './components/edit'
 import TodoInput from './components/todo-input'
 import TodoItemContainer from './components/todo-item-container'
-
 import './App.css'
+import { findById, addTodo, updateTodoList, deleteTask } from './libs/todoHelpers'
 import MdEmail from 'react-icons/lib/md/email'
 import MdPhoneIphone from 'react-icons/lib/md/phone-iphone'
 import MdDateRange from 'react-icons/lib/md/date-range'
@@ -18,36 +18,33 @@ import {
 
 class App extends Component {
 
-  constructor (props) {
-    super(props);
-    this.state = {
+    state = {
       tasks: [{title: 'test', id: 123, completed: false}]
     }
-    this.addTask = this.addTask.bind(this)
-    this.deleteTask = this.deleteTask.bind(this)
-    this.updateTask = this.updateTask.bind(this)
+
+  deleteTask = (id) => {
+    var tasks = this.state.tasks
+    this.setState({tasks: deleteTask(id, tasks))
   }
 
-  deleteTask (id) {
-    var newTasks = this.state.tasks.filter(task => task.id !== id);
-    this.setState({tasks: newTasks})
-  }
-
-  addTask (newTask) {
+  addTask = (newTask) => {
     if (!newTask) { return }
-    var id = +new Date;
-    this.state.tasks.push({title: newTask, id, completed: false})
-    this.setState({tasks: this.state.tasks})
+    var tasks = this.state.tasks,
+        id = +new Date;   
+    this.setState({
+      tasks:  addTodo({title: newTask, id, completed: false}, tasks)
+    })
   }
 
-  updateTask (id, key, value) {
-    this.state.tasks.find(task => {
-      if (task.id === parseInt(id)) {
-        task[key] = value
-      }
-    })
-    this.setState({tasks: this.state.tasks})
+  updateTask = (updatedTask) => {
+    var tasks = this.state.tasks
+    var updatedTasks = updateTodoList(updatedTask, tasks)
+    this.setState({tasks: updatedTasks})
   }
+
+  findTask = (id) => {
+    return findById(id, this.state.tasks)
+  } 
 
   render () {
     return (
@@ -66,7 +63,7 @@ class App extends Component {
             render={(props) => 
               <Edit 
                 updateTask={this.updateTask}
-                task={this.state.tasks.find(task => task.id === parseInt(props.match.params.task))}
+                task={this.findTask(props.match.params.task)}
                 {...props}
               />
             }
