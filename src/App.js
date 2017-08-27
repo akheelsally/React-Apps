@@ -48,7 +48,6 @@ class App extends Component {
   }
 
   updateTask = (updatedTask) => {
-    console.log('taske after comiting')
     console.log(updatedTask)
     var tasks = this.state.tasks
     var updatedTasks = updateTodoList(updatedTask, tasks)
@@ -70,10 +69,6 @@ class App extends Component {
             tasks={this.state.tasks}
             deleteTask={this.deleteTask}
             updateTask={this.updateTask}
-            isFilter={true}
-            listClass={'todo-item-list'}
-            containerClass={'todo-item-container' }  
-            itemClass={'todo-item'}
           />
           <Route 
             path='/:task/edit' 

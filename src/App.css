@@ -60,6 +60,7 @@ a {
     border-bottom-left-radius: 5px; }
 
 .todo-item-container {
+  width: 100%;
   max-width: 600px;
   margin: 0 auto; }
   .todo-item-container .todo-item-filter {
@@ -72,7 +73,7 @@ a {
       padding: .25em;
       flex: 1 1 80px;
       text-align: center;
-      border: 1px solid #C4CBE2; }
+      border: 1px solid #b0c4cb; }
       .todo-item-container .todo-item-filter .filter-btn.active {
         background: linear-gradient(to bottom, #094CA2 0%, #1663c7 10%, #1663c7 90%, #094CA2 100%);
         color: #d1e3fa;
@@ -93,7 +94,7 @@ a {
       padding: 1em 2em;
       margin: 0;
       background: #E8EBF5;
-      border: 1px solid #C4CBE2;
+      border: 1px solid #b0c4cb;
       border-top: none; }
       .todo-item-container .todo-item-list .todo-item:last-of-type {
         box-shadow: 0 1px 3px #C4CBE2;
@@ -223,43 +224,53 @@ a {
           .fs .modal .model-content .btn-group .cancel:hover {
             background: linear-gradient(to bottom, #C31B12 0%, #A00901 20%, #A00901 80%, #C31B12 100%); }
 
-.subtask-list-container {
-  width: 100%; }
-  .subtask-list-container .subtask-list {
+/*.subtask-list-container {
+  width: 100%;
+  .subtask-list {
     list-style: none;
     padding: 0;
     background: #fff;
-    margin: 0; }
-    .subtask-list-container .subtask-list .subtask-list-item {
+    margin: 0;
+    .subtask-list-item {
       position: relative;
       padding: 1em 0 .5em 1em;
-      border: 1px solid #949FC4; }
-      .subtask-list-container .subtask-list .subtask-list-item:first-of-type {
+      border: 1px solid #949FC4; 
+      &:first-of-type {
         border-top-left-radius: .5em;
-        border-top-right-radius: .5em; }
-      .subtask-list-container .subtask-list .subtask-list-item:nth-of-type(n+2) {
-        border-top: none; }
-      .subtask-list-container .subtask-list .subtask-list-item:last-of-type {
+        border-top-right-radius: .5em;
+      }
+      &:nth-of-type(n+2) {
+        border-top: none;
+      }
+      &:last-of-type {
         border-bottom-left-radius: .5em;
-        border-bottom-right-radius: .5em; }
-      .subtask-list-container .subtask-list .subtask-list-item .edit {
+        border-bottom-right-radius: .5em;
+      }
+      .edit {
         position: absolute;
         font-size: 1.5em;
         top: calc(50% - .75em);
         right: 1.75em;
         color: #999;
-        display: none; }
-      .subtask-list-container .subtask-list .subtask-list-item .delete {
+        display: none;
+      }
+      .delete {
         position: absolute;
         font-size: 2em;
         top: calc(50% - .75em);
         right: .5em;
-        color: crimson;
-        display: none; }
-      .subtask-list-container .subtask-list .subtask-list-item:hover .delete,
-      .subtask-list-container .subtask-list .subtask-list-item:hover .edit {
-        display: block; }
+        color:crimson;
+        display: none;
+ 
+      }
+      &:hover  .delete,
+      &:hover .edit {
+        display: block;
+      }
+    }
+  }
 
+}*/
 .notification {
   display: flex;
   justify-content: center;

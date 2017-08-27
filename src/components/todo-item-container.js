@@ -27,8 +27,7 @@ class TodoItemContainer extends Component {
                Please {this.getFilterStatus()} more tasks
             </p>
           </div>     
-        </div>
-        
+        </div>        
       )
     }
     return arr.map( task => {
@@ -38,7 +37,7 @@ class TodoItemContainer extends Component {
           deleteTask={this.props.deleteTask}
           updateTask={this.props.updateTask}
           task={task}
-          itemClass={itemClass} />
+        />
       )
     })
   }
@@ -62,10 +61,10 @@ class TodoItemContainer extends Component {
   render () {
     console.log(this.props.tasks);
     return (
-      <div className={this.props.containerClass}>
-       {this.props.isFilter && <ToggleBtn labels={['ALL', 'Completed', 'Active']} func={this.setFilter} />} 
-        <ul className={this.props.listClass}>
-          {this.rendertaskItems(this.props.tasks, this.props.itemClass)}
+      <div className='todo-item-container'>
+      <ToggleBtn labels={['ALL', 'Completed', 'Active']} func={this.setFilter} />
+        <ul className='todo-item-list'>
+          {this.rendertaskItems(this.props.tasks)}
         </ul>
       </div>
     )

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import SubTaskSection from './sub-task-section'
 import TodoItemContainer from './todo-item-container'
 
 
@@ -15,14 +14,26 @@ class DetailedView extends Component {
       this.setState({subtasks: this.props.task.subtasks || []})
     }
 
+    componentDidUpdate() {
+      if (this.state.toggleSubtask) {
+        this.subtaskInput.focus()
+      }
+    }
+
+    addSubTask = (newSubtask) => {
+      this.setState({subtasks: [...this.state.subtasks,newSubtask]}) 
+    }
+
     deleteSubTask = (id) => {
       var subtasks = this.state.subtasks
       var index = subtasks.findIndex(item => item.id === id)
       this.setState({subtasks:[...subtasks.slice(0,index),...subtasks.slice(index + 1)]})
     }
 
-    updateSubTask = () => {
-      alert('sub edit')
+    updateSubTask = (updatedSubTask) => {
+      var subtasks = this.state.subtasks
+      var index = subtasks.findIndex(item => item.id === updatedSubTask.id)
+      this.setState({subtasks:[...subtasks.slice(0,index),updatedSubTask,...subtasks.slice(index + 1)]})
     }
 
     exit = () => {
@@ -34,36 +45,41 @@ class DetailedView extends Component {
       var dueDate = this.dueDateInput.value
       var task = this.props.task
       var subtask = this.state.subtasks
-      task = {...this.props.task, title, dueDate}
+      task = {...task, title, dueDate}
       task.subtasks = subtask
-      console.log('task before comiting')
-      console.log(task)
       this.props.updateTask(task)
       this.exit()    
     }
 
     toggleSubtaskEdit = () => {
-      this.setState({toggleSubtask: true})
+      var toggleSubtask = !this.state.toggleSubtask
+      this.setState({toggleSubtask})
     }
     
-    handleKeyPress = (e) => {      
-     if (e.which === 13) { 
-       var subtask = this.subtaskInput.value.trim()
-       if (!subtask) { return }
-        subtask = {
-         id: this.props.task.id + (+new Date),
-         title: this.subtaskInput.value.trim(),
-         completed:false
-       }
-       this.addSubTask(subtask)       
-       this.subtaskInput.value = ''
-      }
-      if (e.which === 27) { this.setState({subtasks: false}) }
+    handleSubTaskInput = (e) => {    
+    const PRESSED_ENTER = e.type === 'keydown' && e.which === 13
+    const BLUR_OR_ESCAPE_KEY_PRESSED =  e.type === 'blur' || (e.type === 'keydown' && e.which === 27) 
+    if (PRESSED_ENTER) {
+        var subtask = this.subtaskInput.value.trim()
+        if (!subtask) { return }
+         subtask = {
+          id: this.props.task.id + (+new Date),
+          title: this.subtaskInput.value.trim(),
+          completed:false
+        }
+        this.addSubTask(subtask)       
+        this.subtaskInput.value = ''
+    }
+    if (BLUR_OR_ESCAPE_KEY_PRESSED) { 
+         this.setState({toggleSubtask: false}) 
     }
 
-    addSubTask = (newSubtask) => {
-      this.setState({subtasks: [...this.state.subtasks,newSubtask]}) 
+    if (e.type === 'blur') {
+
     }
+    
+    }
+
 
     render () {
       return (
@@ -100,13 +116,16 @@ class DetailedView extends Component {
                   className='subtask-add-btn' 
                   onClick={this.toggleSubtaskEdit}
                 >
-                  +
+                 {this.state.toggleSubtask ?  '-' : '+'}
                 </span>
                </label>    
               {this.state.toggleSubtask && 
                 <input 
                   type='text' 
-                  onKeyDown={this.handleKeyPress} 
+                  className='modal-input'
+                  placeholder='Enter subtask'
+                  onKeyDown={this.handleSubTaskInput} 
+                  onBlur={this.handleSubTaskInput}
                   ref={el => { this.subtaskInput = el }}  
                 />
               }          
@@ -114,9 +133,6 @@ class DetailedView extends Component {
               tasks={this.state.subtasks}
               deleteTask={this.deleteSubTask}
               updateTask={this.updateSubTask}  
-              listClass={'subtask-list'}
-              containerClass={'subtask-list-container' }  
-              itemClass={'subtask-list-item '}  
             />
             
               <div className="btn-group">

@@ -5,7 +5,7 @@ import { partialApply } from '../libs/todoHelpers'
 class ToggleBtn extends Component {
 
   state = {
-      active: null,
+      active: 0,
   }  
 
  updateFilter = (filter, func, index) => {    

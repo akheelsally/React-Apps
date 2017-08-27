@@ -5,6 +5,7 @@ $todoLisItemBackgroundColor: #E8EBF5 ;
 $todoItemBorder: $backgroundColor;
 $taskStrikethrough:#3F826D;
 $modalBackgroundColor: #E8EBF5;
+$itemListBoderColor:#b0c4cb;
 
 
 * {box-sizing:border-box;}
@@ -75,7 +76,8 @@ a {
 }// end of todo-input-section
 
 
-.todo-item-container { 
+.todo-item-container {
+    width: 100%; 
     max-width:600px;
     margin: 0 auto;
   .todo-item-filter {    
@@ -88,7 +90,7 @@ a {
       padding:.25em;
       flex:1 1 80px;
       text-align: center;
-      border: 1px solid #C4CBE2; 
+      border: 1px solid $itemListBoderColor; 
       &.active {
         background:  linear-gradient(to bottom, #094CA2 0%,#1663c7 10%,#1663c7 90%,#094CA2 100%);;
         color:#d1e3fa;
@@ -114,7 +116,7 @@ a {
       padding:1em 2em;
       margin:0;
       background:$todoLisItemBackgroundColor;
-      border: 1px solid #C4CBE2; 
+      border: 1px solid $itemListBoderColor; 
       border-top:none;
       &:last-of-type{
         box-shadow: 0 1px 3px #C4CBE2;
@@ -275,7 +277,8 @@ a {
     }//end of model content
   }//end of model
 }// end of fsy
-.subtask-list-container {
+
+/*.subtask-list-container {
   width: 100%;
   .subtask-list {
     list-style: none;
@@ -321,7 +324,7 @@ a {
     }
   }
 
-}
+}*/
 
 
 .notification {
