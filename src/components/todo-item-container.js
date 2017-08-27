@@ -60,6 +60,7 @@ class TodoItemContainer extends Component {
   }
 
   render () {
+    console.log(this.props.tasks);
     return (
       <div className={this.props.containerClass}>
        {this.props.isFilter && <ToggleBtn labels={['ALL', 'Completed', 'Active']} func={this.setFilter} />} 

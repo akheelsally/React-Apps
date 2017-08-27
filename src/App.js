@@ -19,9 +19,8 @@ import {
 class App extends Component {
 
     state = {
-      tasks: [{title: 'test', id: 123, completed: false, dueDate: new  Date('2017/04/08'),
+      tasks: [{title: 'test', id: 123, completed: false, dueDate: '2017-04-08',
                 subtasks:[
-                  {title: 'test', id: 123, completed: false},
                   {id: 123, title: 'write test', completed: false},
                   {id: 456, title: 'write more test', completed: false},
                   {id: 789, title: 'this is the new todo', completed: false},
@@ -49,6 +48,8 @@ class App extends Component {
   }
 
   updateTask = (updatedTask) => {
+    console.log('taske after comiting')
+    console.log(updatedTask)
     var tasks = this.state.tasks
     var updatedTasks = updateTodoList(updatedTask, tasks)
     this.setState({tasks: updatedTasks})
@@ -79,6 +80,7 @@ class App extends Component {
             render={(props) => 
               <DetailedView 
                 updateTask={this.updateTask}
+                addSubTask = {this.addSubTask}
                 task={this.findTask(props.match.params.task)}
                 {...props}
               />
