@@ -57,9 +57,10 @@ class DetailedView extends Component {
     }
     
     handleSubTaskInput = (e) => {    
-    const PRESSED_ENTER = e.type === 'keydown' && e.which === 13
+    const PRESSED_ENTER_KEY = e.type === 'keydown' && e.which === 13
     const BLUR_OR_ESCAPE_KEY_PRESSED =  e.type === 'blur' || (e.type === 'keydown' && e.which === 27) 
-    if (PRESSED_ENTER) {
+
+    if (PRESSED_ENTER_KEY) {
         var subtask = this.subtaskInput.value.trim()
         if (!subtask) { return }
          subtask = {
@@ -72,14 +73,8 @@ class DetailedView extends Component {
     }
     if (BLUR_OR_ESCAPE_KEY_PRESSED) { 
          this.setState({toggleSubtask: false}) 
-    }
-
-    if (e.type === 'blur') {
-
-    }
-    
-    }
-
+    }    
+   }
 
     render () {
       return (
@@ -93,53 +88,55 @@ class DetailedView extends Component {
               onClick={this.exit}>&times;
             </span>
             <div className='model-content'>
-              <label className='modal-label' htmlFor='task-edit-input'>Title</label>
-              <input
-                id='task-edit-input'
-                className='modal-input'
-                type='text'
-                defaultValue={this.props.task.title} 
-                ref={el => { this.titleUpdateInput = el }}
-              />
-              <label className='modal-label' htmlFor='dueDate'>Due Date</label>
-              <input 
-                id='dueDate'
-                className='modal-input'
-                type='date'
-                defaultValue={this.props.task.dueDate}
-                ref={el => { this.dueDateInput = el }}
-              />
-
-              <label className='modal-label'>
-                Sub Tasks 
-                <span 
-                  className='subtask-add-btn' 
-                  onClick={this.toggleSubtaskEdit}
-                >
-                 {this.state.toggleSubtask ?  '-' : '+'}
-                </span>
-               </label>    
-              {this.state.toggleSubtask && 
-                <input 
-                  type='text' 
+              <div className='main-task-data'>
+                <label className='modal-label' htmlFor='task-edit-input'>Title</label>
+                <input
+                  id='task-edit-input'
                   className='modal-input'
-                  placeholder='Enter subtask'
-                  onKeyDown={this.handleSubTaskInput} 
-                  onBlur={this.handleSubTaskInput}
-                  ref={el => { this.subtaskInput = el }}  
+                  type='text'
+                  defaultValue={this.props.task.title} 
+                  ref={el => { this.titleUpdateInput = el }}
                 />
-              }          
-              <TodoItemContainer
-              tasks={this.state.subtasks}
-              deleteTask={this.deleteSubTask}
-              updateTask={this.updateSubTask}  
-            />
-            
-              <div className="btn-group">
-                <span className='btn-modal' onClick={this.update} >Confirm</span>
-                <span className='btn-modal' onClick={this.exit}>Cancel</span>
+                <label className='modal-label' htmlFor='dueDate'>Due Date</label>
+                <input 
+                  id='dueDate'
+                  className='modal-input'
+                  type='date'
+                  defaultValue={this.props.task.dueDate}
+                  ref={el => { this.dueDateInput = el }}
+                />
               </div>
+              <div className='sub-task-data'>
+                <label className='modal-label'>
+                  Sub Tasks 
+                  <span 
+                    className='subtask-add-btn' 
+                    onClick={this.toggleSubtaskEdit}
+                  >
+                  {this.state.toggleSubtask ?  '-' : '+'}
+                  </span>
+                </label>    
+                {this.state.toggleSubtask && 
+                  <input 
+                    type='text' 
+                    className='modal-input'
+                    placeholder='Enter subtask'
+                    onKeyDown={this.handleSubTaskInput} 
+                    onBlur={this.handleSubTaskInput}
+                    ref={el => { this.subtaskInput = el }}  
+                  />
+                }          
+                <TodoItemContainer
+                tasks={this.state.subtasks}
+                deleteTask={this.deleteSubTask}
+                updateTask={this.updateSubTask}  
+              />
             </div>
+          </div>
+          <div className="btn-group">
+                  <span className='btn-modal' onClick={this.update} >Confirm</span>
+                  <span className='btn-modal' onClick={this.exit}>Cancel</span>
+          </div>   
           </div>
         </div>
       

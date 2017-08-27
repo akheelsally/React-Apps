@@ -19,7 +19,8 @@ const TodoItem = (props) => {
         onChange={handleTaskStatusChange}
         defaultChecked={props.task.completed} 
       />
-      <span className='edit'><Link to={`/${props.task.id}/edit`}>&#9998;</Link></span>
+      {props.allowEdit && <span className='edit'><Link to={`/${props.task.id}/edit`}>&#9998;</Link></span>}
+      
       <span className='delete' onClick={deleteTask}>&times;</span>
       <span className='todo-text-outer'>
         <span className='todo-text-inner'>{props.task.title}</span>
@@ -31,6 +32,7 @@ const TodoItem = (props) => {
 TodoItem.propTypes = {
   updateTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
+  allowEdit: PropTypes.bool,
   task: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

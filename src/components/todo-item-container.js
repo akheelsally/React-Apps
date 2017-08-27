@@ -36,6 +36,7 @@ class TodoItemContainer extends Component {
           key={task.id}
           deleteTask={this.props.deleteTask}
           updateTask={this.props.updateTask}
+          allowEdit={this.props.allowEdit}
           task={task}
         />
       )

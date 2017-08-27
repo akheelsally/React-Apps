@@ -66,6 +66,7 @@ class App extends Component {
             addTask={this.addTask}
           />
           <TodoItemContainer
+            allowEdit={true}
             tasks={this.state.tasks}
             deleteTask={this.deleteTask}
             updateTask={this.updateTask}
