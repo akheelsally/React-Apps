@@ -1,0 +1,36 @@
+* {box-sizing:border-box;}
+
+html,
+body {
+  min-width:100vw;
+  min-height:100vh;
+  padding:0;
+  margin:0;
+}
+
+body {
+  font-size: 90%;
+  font-family: 'Roboto', serif;
+  @media screen and (min-width:400px) {
+    font-size: 100%;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.btn {
+  height:40px;
+  line-height:40px;
+  min-width:80px;
+  text-align: end;
+  width:15%;
+  padding:0 1em;
+  background: $btnBackgroundColor;
+  border-top-right-radius: .5em;
+  border-bottom-right-radius: .5em;
+  color:#E8EBF5;
+}

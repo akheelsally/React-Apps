@@ -1,0 +1,94 @@
+.todo-item-container {
+    width: 100%; 
+    max-width:600px;
+    margin: .5em auto;
+  .todo-item-filter {    
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-content: center;
+    .filter-btn {
+      background: #E8EBF5;
+      padding:.25em;
+      flex:1 1 80px;
+      text-align: center;
+      border: 1px solid $itemListBoderColor; 
+      &.active {
+        background:  linear-gradient(to bottom, #094CA2 0%,#1663c7 10%,#1663c7 90%,#094CA2 100%);;
+        color:#d1e3fa;
+        border-color:#094CA2; 
+      }
+    }
+    .filter-btn:first-of-type {
+      border-top-left-radius: .75em;
+      border-right:none; 
+    }
+    .filter-btn:last-of-type {
+      border-top-right-radius: .75em;
+      border-left:none; 
+    }
+  }// todo-item-filter 
+  .todo-item-list {
+    min-height: 166px;
+    list-style:none;    
+    padding:0;
+    margin:0;
+    color: #FFFFFF;    
+    .todo-item {
+      position: relative;
+      padding:1em 2em;
+      margin:0;
+      background:$todoLisItemBackgroundColor;
+      border: 1px solid $itemListBoderColor; 
+      border-top:none;
+      &:last-of-type{
+        box-shadow: 0 1px 3px #C4CBE2;
+        border-bottom-left-radius: .75em;
+        border-bottom-right-radius: .75em;
+      }
+      .checkbox {
+        margin: 0 1em 0 0;
+        background:red;
+      }
+      .checkbox:checked ~ .todo-text-outer {
+        color:red;
+        position: relative;
+        display: inline-block; 
+      } 
+      .checkbox:checked ~ .todo-text-outer::before {
+            content: '';
+            border-bottom: .25em solid $taskStrikethrough;
+            opacity:.9;
+            width: 100%;
+            position: absolute;
+            right: 0;
+            top: calc(50% - .115em);
+      }
+      .todo-text-inner {
+        color:#40434E;
+      }
+      .edit {
+        position: absolute;
+        font-size: 1.5em;
+        top: calc(50% - .75em);
+        right: 1.75em;
+        color: #999;
+        display: none;
+      }
+      .delete {
+        position: absolute;
+        font-size: 2em;
+        top: calc(50% - .75em);
+        right: .5em;
+        color:crimson;
+        display: none;
+ 
+      }
+      &:hover  .delete,
+      &:hover .edit {
+        display: block;
+      }
+ 
+    }// end of todo-item
+  }// todo-item-list
+}// end of todo-item-container

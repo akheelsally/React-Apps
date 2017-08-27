@@ -1,0 +1,21 @@
+.todo-input-section {
+    display:flex;
+    align-items: stretch;
+    height:40px;  
+    width:100%;
+    max-width:600px;
+    margin:2em auto;
+    .task-input {
+      font-size: 1.5em;
+      font-weight: 500;
+      background-color: rgba(0,0,0,0.6);
+      color:#E8EBF5;
+      outline: none;
+      border: none;
+      width:100%;
+      height:100%;
+      padding:.5em 1em;
+      border-top-left-radius:  5px;
+      border-bottom-left-radius: 5px;   
+    }// task-input  
+  }// end of todo-input-section
